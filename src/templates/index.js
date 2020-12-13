@@ -1,5 +1,6 @@
 import Helmet from 'react-helmet';
 import React from 'react';
+import {graphql} from 'gatsby';
 
 import userConfig from '../../config';
 
@@ -48,3 +49,17 @@ const IndexPage = ({ pageContext }) => {
   );
 };
 export default IndexPage;
+
+// this minimal GraphQL query ensures that when 'gatsby develop' is running
+// any changes to content files affecting this page are refreshed in browser
+export const query = graphql`
+query {
+  allSitePage {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+}
+`;
